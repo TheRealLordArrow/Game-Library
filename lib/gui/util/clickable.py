@@ -2,13 +2,13 @@ from typing import Callable
 
 import pygame.mouse
 
+from lib.object.game_object import GameObject
 
-class Clickable:
+
+class Clickable(GameObject):
 
     def __init__(self, game, position: tuple[int, int], size: tuple[int, int]):
-        self.game = game
-        self.position = position
-        self.size = size
+        super().__init__(game, position, size)
         self.pressed = True
         self.mouse_over = False
         self.on_mouse_over = self.empty_function
@@ -18,18 +18,6 @@ class Clickable:
     # TODO: maybe file for /util
     def empty_function(self) -> None:
         pass
-
-    def get_position(self) -> tuple[int, int]:
-        return self.position
-
-    def set_position(self, position: tuple[int, int]) -> None:
-        self.position = position
-
-    def get_size(self) -> tuple[int, int]:
-        return self.size
-
-    def set_size(self, size: tuple[int, int]) -> None:
-        self.size = size
 
     def is_mouse_over(self) -> bool:
         mouse_position = self.game.get_mouse_position()
