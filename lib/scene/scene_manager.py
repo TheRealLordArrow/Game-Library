@@ -20,13 +20,12 @@ class SceneManager:
         self.registered_scenes[scene.get_name()] = scene
         if start_scene:
             self.change_scene(scene.get_name())
-            scene.on_load()
             self.game.update()
 
     def register_scenes(self, start_scene: Scene, scenes: list[Scene]) -> None:
-        self.register_scene(start_scene, True)
         for scene in scenes:
             self.register_scene(scene)
+        self.register_scene(start_scene, True)
 
     def get_registered_scenes(self) -> dict[str, Scene]:
         return self.registered_scenes
