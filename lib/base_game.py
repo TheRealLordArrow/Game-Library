@@ -10,6 +10,8 @@ from lib.util.auto_scaler import AutoScaler
 
 class BaseGame:
 
+    # IMPORTANT: FULLSCREEN STILL HAS BUGS / DO NOT CONSIDER USING IT YET
+
     def __init__(self):
         pygame.init()
         pygame.font.init()
