@@ -11,7 +11,6 @@ class TestScene(Scene):
         super().__init__(game)
         self.button = Button(self.game, (100, 100), (50, 50), "Screenshot (2)")
         self.button.set_on_press(self.on_button)
-        self.button.set_resize_on_over((5, 5))
 
     def handle(self) -> None:
         self.button.handle()
