@@ -34,3 +34,16 @@ class AutoScaler:
             height = self.scale_number(size[1], True)
 
         screen.blit(pygame.transform.smoothscale(image, (width, height)), (x, y))
+
+    def draw_text(self, text: str, font: pygame.font.Font, antialias: bool, color: tuple[int, int, int],
+                  position: tuple[int, int]) -> None:
+        text = font.render(text, antialias, color)
+        screen = self.game.get_screen()
+
+        x = self.scale_number(position[0])
+        y = self.scale_number(position[1], True)
+
+        width = self.scale_number(text.get_width())
+        height = self.scale_number(text.get_height(), True)
+
+        screen.blit(pygame.transform.smoothscale(text, (width, height)), (x, y))
