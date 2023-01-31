@@ -35,8 +35,9 @@ class AutoScaler:
 
         screen.blit(pygame.transform.smoothscale(image, (width, height)), (x, y))
 
-    def draw_text(self, text: str, font: pygame.font.Font, antialias: bool, color: tuple[int, int, int],
+    def draw_text(self, text: str, font: str, antialias: bool, color: tuple[int, int, int],
                   position: tuple[int, int]) -> None:
+        font = self.game.get_font_manager().get_font(font)
         text = font.render(text, antialias, color)
         screen = self.game.get_screen()
 
@@ -47,3 +48,13 @@ class AutoScaler:
         height = self.scale_number(text.get_height(), True)
 
         screen.blit(pygame.transform.smoothscale(text, (width, height)), (x, y))
+
+    def draw_rect(self, color: tuple[int, int, int], rect: pygame.rect) -> None:
+        screen = self.game.get_screen()
+
+        x = self.scale_number(rect[0])
+        y = self.scale_number(rect[1], True)
+        width = self.scale_number(rect[2])
+        height = self.scale_number(rect[3], True)
+
+        pygame.draw.rect(screen, color, (int(x), int(y), int(width), int(height)))
