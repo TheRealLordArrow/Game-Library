@@ -11,8 +11,6 @@ from lib.util.auto_scaler import AutoScaler
 
 class BaseGame:
 
-    # IMPORTANT: FULLSCREEN STILL HAS BUGS / DO NOT CONSIDER USING IT YET
-
     def __init__(self):
         pygame.init()
         pygame.font.init()
@@ -132,10 +130,11 @@ class BaseGame:
 
     def toggle_fullscreen(self) -> None:
         if not self.is_fullscreen():
+            fullscreen_size = self.fullscreen_size
             self.screen = pygame.display.set_mode(
-                (window_settings.WIDTH, window_settings.HEIGHT), pygame.FULLSCREEN | settings_helper.get_screen_flags()
+                (fullscreen_size[0], fullscreen_size[1]), pygame.FULLSCREEN | settings_helper.get_screen_flags()
             )
-            size = self.fullscreen_size
+            size = fullscreen_size
             self.fullscreen = True
         else:
             self.screen = pygame.display.set_mode(self.get_screen_size(), settings_helper.get_screen_flags(False))
