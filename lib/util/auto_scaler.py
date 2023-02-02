@@ -41,6 +41,8 @@ class AutoScaler:
                   color: Union[tuple[int, int, int], tuple[int, int, int, int]], position: tuple[int, int]) -> None:
         font = self.game.get_font_manager().get_font(font)
         text = font.render(text, antialias, color)
+        if len(color) == 4:
+            text.set_alpha(color[3])
         screen = self.game.get_screen()
 
         x = self.scale_number(position[0])
