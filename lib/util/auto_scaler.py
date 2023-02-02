@@ -2,8 +2,6 @@ from typing import Union
 
 import pygame.transform
 
-from config import window_settings
-
 
 class AutoScaler:
 
