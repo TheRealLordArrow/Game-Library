@@ -21,8 +21,9 @@ class AutoScaler:
         else:
             return self.scale[0] * number
 
-    def draw_image(self, name: str, position: tuple[int, int], size: tuple[int, int] = None) -> None:
+    def draw_image(self, name: str, position: tuple[int, int], size: tuple[int, int] = None, alpha: int = 255) -> None:
         image = self.game.get_texture_manager().get_texture(name)
+        image.set_alpha(alpha)
         screen = self.game.get_screen()
 
         x = self.scale_number(position[0])
