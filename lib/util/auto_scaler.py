@@ -2,6 +2,8 @@ from typing import Union
 
 import pygame.transform
 
+from config import window_settings
+
 
 class AutoScaler:
 
@@ -61,4 +63,10 @@ class AutoScaler:
         width = self.scale_number(rect[2])
         height = self.scale_number(rect[3], True)
 
-        pygame.draw.rect(screen, color, (int(x), int(y), int(width), int(height)))
+        if len(color) == 4:
+            alpha_surface = pygame.Surface((width, height))
+            pygame.draw.rect(alpha_surface, color, (0, 0, int(width), int(height)))
+            alpha_surface.set_alpha(color[3])
+            screen.blit(alpha_surface, (x, y))
+        else:
+            pygame.draw.rect(screen, color, (int(x), int(y), int(width), int(height)))
