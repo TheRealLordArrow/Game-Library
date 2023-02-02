@@ -1,3 +1,5 @@
+from typing import Union
+
 import pygame.transform
 
 
@@ -35,8 +37,8 @@ class AutoScaler:
 
         screen.blit(pygame.transform.smoothscale(image, (width, height)), (x, y))
 
-    def draw_text(self, text: str, font: str, antialias: bool, color: pygame.Color,
-                  position: tuple[int, int]) -> None:
+    def draw_text(self, text: str, font: str, antialias: bool,
+                  color: Union[tuple[int, int, int], tuple[int, int, int, int]], position: tuple[int, int]) -> None:
         font = self.game.get_font_manager().get_font(font)
         text = font.render(text, antialias, color)
         screen = self.game.get_screen()
@@ -49,7 +51,7 @@ class AutoScaler:
 
         screen.blit(pygame.transform.smoothscale(text, (width, height)), (x, y))
 
-    def draw_rect(self, color: pygame.Color, rect: pygame.rect) -> None:
+    def draw_rect(self, color: Union[tuple[int, int, int], tuple[int, int, int, int]], rect: pygame.rect) -> None:
         screen = self.game.get_screen()
 
         x = self.scale_number(rect[0])
