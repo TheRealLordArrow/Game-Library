@@ -69,3 +69,13 @@ class AutoScaler:
             screen.blit(alpha_surface, (x, y))
         else:
             pygame.draw.rect(screen, color, (int(x), int(y), int(width), int(height)))
+
+    def draw_surface(self, surface: pygame.Surface, position: tuple[int, int]) -> None:
+        screen = self.game.get_screen()
+
+        x = self.scale_number(position[0])
+        y = self.scale_number(position[1], True)
+        width = self.scale_number(surface.get_width())
+        height = self.scale_number(surface.get_height(), True)
+
+        screen.blit(pygame.transform.smoothscale(surface, (width, height)), (x, y))
