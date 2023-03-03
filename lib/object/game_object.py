@@ -13,6 +13,7 @@ class GameObject:
         self.position = position
         if hasattr(self, "render"):
             self.game.render_area((old_position[0], old_position[1], self.size[0], self.size[1]))
+            self.render(self.game.get_auto_scaler())
 
     def get_size(self) -> tuple[int, int]:
         return self.size
@@ -22,3 +23,4 @@ class GameObject:
         self.size = size
         if hasattr(self, "render"):
             self.game.render_area((self.position[0], self.position[1], old_size[0], old_size[1]))
+            self.render(self.game.get_auto_scaler())
