@@ -1,3 +1,4 @@
+import math
 from typing import Union
 
 import pygame.transform
@@ -36,7 +37,7 @@ class AutoScaler:
             width = self.scale_number(size[0])
             height = self.scale_number(size[1], True)
 
-        screen.blit(pygame.transform.smoothscale(image, (width, height)), (x, y))
+        screen.blit(pygame.transform.smoothscale(image, (math.ceil(width), math.ceil(height))), (x, y))
 
     def draw_text(self, text: str, font: str, antialias: bool,
                   color: Union[tuple[int, int, int], tuple[int, int, int, int]], position: tuple[int, int]) -> None:
@@ -52,7 +53,7 @@ class AutoScaler:
         width = self.scale_number(text.get_width())
         height = self.scale_number(text.get_height(), True)
 
-        screen.blit(pygame.transform.smoothscale(text, (width, height)), (x, y))
+        screen.blit(pygame.transform.smoothscale(text, (math.ceil(width), math.ceil(height))), (x, y))
 
     def draw_rect(self, color: Union[tuple[int, int, int], tuple[int, int, int, int]], rect: pygame.rect) -> None:
         screen = self.game.get_screen()
@@ -68,7 +69,7 @@ class AutoScaler:
             alpha_surface.set_alpha(color[3])
             screen.blit(alpha_surface, (x, y))
         else:
-            pygame.draw.rect(screen, color, (int(x), int(y), int(width), int(height)))
+            pygame.draw.rect(screen, color, (int(x), int(y), math.ceil(width), math.ceil(height)))
 
     def draw_surface(self, surface: pygame.Surface, position: tuple[int, int]) -> None:
         screen = self.game.get_screen()
@@ -78,4 +79,4 @@ class AutoScaler:
         width = self.scale_number(surface.get_width())
         height = self.scale_number(surface.get_height(), True)
 
-        screen.blit(pygame.transform.smoothscale(surface, (width, height)), (x, y))
+        screen.blit(pygame.transform.smoothscale(surface, (math.ceil(width), math.ceil(height))), (x, y))

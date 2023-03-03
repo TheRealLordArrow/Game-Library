@@ -1,3 +1,5 @@
+import math
+
 import pygame
 from win32api import GetSystemMetrics
 
@@ -88,7 +90,7 @@ class BaseGame:
         width = self.auto_scaler.scale_number(area[2])
         height = self.auto_scaler.scale_number(area[3], True)
 
-        self.screen.set_clip((x, y, width, height))
+        self.screen.set_clip((x, y, math.ceil(width), math.ceil(height)))
         self.scene_manager.render()
         self.screen.set_clip(None)
 
