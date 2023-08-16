@@ -1,4 +1,5 @@
 class GameObject:
+    # TODO: Gameobject always should have render attribute
 
     def __init__(self, game, position: tuple[int, int], size: tuple[int, int]):
         self.game = game

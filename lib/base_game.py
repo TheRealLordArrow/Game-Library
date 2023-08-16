@@ -5,6 +5,7 @@ from win32api import GetSystemMetrics
 
 from config import window_settings
 from lib.manager.font_manager import FontManager
+from lib.manager.sound_manager import SoundManager
 from lib.manager.texture_manager import TextureManager
 from lib.scene.scene_manager import SceneManager
 from lib.util import settings_helper
@@ -28,6 +29,9 @@ class BaseGame:
         # TODO: Add Packs
         self.texture_manager = TextureManager()
         self.texture_manager.load_textures()
+
+        self.sound_manager = SoundManager()
+        self.sound_manager.load_sounds()
 
         self.font_manager = FontManager()
         self.font_manager.load_fonts()
@@ -105,6 +109,9 @@ class BaseGame:
 
     def get_texture_manager(self) -> TextureManager:
         return self.texture_manager
+
+    def get_sound_manager(self) -> SoundManager:
+        return self.get_sound_manager
 
     def get_font_manager(self) -> FontManager:
         return self.font_manager
