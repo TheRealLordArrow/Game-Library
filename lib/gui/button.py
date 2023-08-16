@@ -7,9 +7,8 @@ from lib.util.auto_scaler import AutoScaler
 
 class Button(Clickable):
 
-    def __init__(self, game, position: tuple[int, int], size: tuple[int, int],
-                 image: str, hover_sound: str = None, click_sound: str = None):
-        super().__init__(game, position, size, hover_sound, click_sound)
+    def __init__(self, game, position: tuple[int, int], size: tuple[int, int], image: str):
+        super().__init__(game, position, size)
         self.image = image
 
     def get_image(self) -> str:
