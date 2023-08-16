@@ -111,7 +111,7 @@ class BaseGame:
         return self.texture_manager
 
     def get_sound_manager(self) -> SoundManager:
-        return self.get_sound_manager
+        return self.sound_manager
 
     def get_font_manager(self) -> FontManager:
         return self.font_manager
