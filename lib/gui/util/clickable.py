@@ -7,8 +7,11 @@ from lib.object.game_object import GameObject
 
 class Clickable(GameObject):
 
-    def __init__(self, game, position: tuple[int, int], size: tuple[int, int]):
+    def __init__(self, game, position: tuple[int, int], size: tuple[int, int],
+                 hover_sound: str = None, click_sound: str = None):
         super().__init__(game, position, size)
+        self.hover_sound = hover_sound
+        self.click_sound = click_sound
         self.pressed = True
         self.mouse_over = False
         self.on_mouse_over = self.empty_function
@@ -28,10 +31,14 @@ class Clickable(GameObject):
         if self.is_mouse_over():
             if not self.mouse_over:
                 self.mouse_over = True
+                if self.hover_sound is not None:
+                    self.game.get_sound_manager().get_sound(self.hover_sound).play()
                 self.on_mouse_over()
             if pygame.mouse.get_pressed()[0]:
                 if not self.pressed:
                     self.pressed = True
+                    if self.click_sound is not None:
+                        self.game.get_sound_manager().get_sound(self.click_sound).play()
                     self.on_press()
             else:
                 self.pressed = False
