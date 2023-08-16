@@ -7,16 +7,17 @@ from lib.object.game_object import GameObject
 
 class Clickable(GameObject):
 
-    def __init__(self, game, position: tuple[int, int], size: tuple[int, int],
-                 hover_sound: str = None, click_sound: str = None):
+    def __init__(self, game, position: tuple[int, int], size: tuple[int, int]):
         super().__init__(game, position, size)
-        self.hover_sound = hover_sound
-        self.click_sound = click_sound
         self.pressed = True
         self.mouse_over = False
+
         self.on_mouse_over = self.empty_function
         self.on_mouse_left = self.empty_function
         self.on_press = self.empty_function
+
+        self.hover_sound = None
+        self.click_sound = None
 
     # TODO: maybe file for /util
     def empty_function(self) -> None:
@@ -56,3 +57,9 @@ class Clickable(GameObject):
 
     def set_on_press(self, on_press: Callable) -> None:
         self.on_press = on_press
+
+    def set_hover_sound(self, sound: str) -> None:
+        self.hover_sound = sound
+
+    def set_click_sound(self, sound: str) -> None:
+        self.click_sound = sound
