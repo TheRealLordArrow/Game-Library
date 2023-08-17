@@ -11,7 +11,7 @@ class Scene:
     def get_name(self) -> str:
         return self.__class__.__name__
 
-    def on_load(self) -> None:
+    def on_load(self, signal: int = 0) -> None:
         pass
 
     def listen(self, event: pygame.event.Event):

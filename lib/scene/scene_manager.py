@@ -1,5 +1,3 @@
-import copy
-
 import pygame.event
 
 from lib.scene.scene import Scene
@@ -30,11 +28,11 @@ class SceneManager:
     def get_registered_scenes(self) -> dict[str, Scene]:
         return self.registered_scenes
 
-    def change_scene(self, name: str) -> None:
+    def change_scene(self, name: str, signal: int = 0) -> None:
         for scene in dict.values(self.registered_scenes):
             if scene.get_name() == name:
-                self.current_scene = (copy.copy(scene))
-                self.current_scene.on_load()
+                self.current_scene = scene
+                self.current_scene.on_load(signal)
                 self.render()
                 return
         raise RuntimeError(f"no registered scene named {name} found")
