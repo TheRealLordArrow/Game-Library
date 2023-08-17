@@ -31,7 +31,8 @@ class SceneManager:
     def change_scene(self, name: str, signal: int = 0) -> None:
         for scene in dict.values(self.registered_scenes):
             if scene.get_name() == name:
-                self.current_scene.on_unload()
+                if self.current_scene is not None:
+                    self.current_scene.on_unload()
                 self.current_scene = scene
                 self.current_scene.on_load(signal)
                 self.render()
