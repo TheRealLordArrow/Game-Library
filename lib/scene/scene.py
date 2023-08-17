@@ -11,6 +11,7 @@ class Scene:
     def get_name(self) -> str:
         return self.__class__.__name__
 
+    # TODO: implement setting signals automatically
     def on_load(self, signal: int = 0) -> None:
         pass
 
