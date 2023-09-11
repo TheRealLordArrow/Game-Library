@@ -1,3 +1,5 @@
+import pygame.time
+
 from lib.object.game_object import GameObject
 
 
@@ -10,7 +12,14 @@ class Animation(GameObject):
         self.length = length
         self.frame_delay = frame_delay
         self.current_frame = 1
-        self.last_frame_change = 0
+        self.last_frame_change = pygame.time.get_ticks() + frame_delay
+
+    def clear_area(self) -> None:
+        self.game.render_area((self.position[0], self.position[1], self.size[0], self.size[1]))
+
+    def render(self) -> None:
+        self.clear_area()
+        self.game.get_auto_scaler().draw_image(self.name + "_" + str(self.current_frame), self.position, self.size)
 
     def get_name(self) -> str:
         return self.name
