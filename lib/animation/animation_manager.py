@@ -13,7 +13,7 @@ class AnimationManager:
         auto_scaler = self.game.get_auto_scaler()
         time = pygame.time.get_ticks()
         for animation in self.animations:
-            if animation.get_last_frame_change() + animation.get_frame_delay() >= time:
+            if animation.get_last_frame_change() + animation.get_frame_delay() <= time:
                 current_frame = animation.get_current_frame()
                 if current_frame >= animation.get_length():
                     self.animations.remove(animation)
