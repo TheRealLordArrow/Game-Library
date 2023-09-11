@@ -4,6 +4,7 @@ import pygame
 from win32api import GetSystemMetrics
 
 from config import window_settings
+from lib.animation.animation_manager import AnimationManager
 from lib.manager.font_manager import FontManager
 from lib.manager.sound_manager import SoundManager
 from lib.manager.texture_manager import TextureManager
@@ -29,6 +30,7 @@ class BaseGame:
         # TODO: Add Packs
         self.texture_manager = TextureManager()
         self.texture_manager.load_textures()
+        self.animation_manager = AnimationManager(self)
 
         self.sound_manager = SoundManager()
         self.sound_manager.load_sounds()
@@ -86,6 +88,7 @@ class BaseGame:
             self.get_scene_manager().listen(event)
 
     def handle(self) -> None:
+        self.animation_manager.handle()
         self.get_scene_manager().handle()
 
     def render_area(self, area: pygame.rect) -> None:
@@ -109,6 +112,9 @@ class BaseGame:
 
     def get_texture_manager(self) -> TextureManager:
         return self.texture_manager
+
+    def get_animation_manager(self) -> AnimationManager:
+        return self.animation_manager
 
     def get_sound_manager(self) -> SoundManager:
         return self.sound_manager
