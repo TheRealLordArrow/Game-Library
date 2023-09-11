@@ -3,7 +3,7 @@ from lib.object.game_object import GameObject
 
 class Animation(GameObject):
 
-    def __init__(self, name: str, position: tuple[int, int], size: tuple[int, int], frame_delay: int, game,
+    def __init__(self, game, name: str, position: tuple[int, int], size: tuple[int, int], frame_delay: int,
                  length: int):
         super().__init__(game, position, size)
         self.name = name
